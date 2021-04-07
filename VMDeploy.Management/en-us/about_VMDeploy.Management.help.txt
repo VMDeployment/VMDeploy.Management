@@ -1,0 +1,11 @@
+﻿TOPIC
+	about_VMDeploy.Management
+	
+SHORT DESCRIPTION
+	Explains how to use the VMDeploy.Management powershell module
+	
+LONG DESCRIPTION
+	<Insert Content here>
+
+KEYWORDS
+	VMDeploy.Management
