@@ -21,12 +21,14 @@
 	Description = 'Manage and Validate the configuration set of the VMDeployment Process'
 	
 	# Minimum version of the Windows PowerShell engine required by this module
-	PowerShellVersion = '5.0'
+	PowerShellVersion = '5.1'
 	
 	# Modules that must be imported into the global environment prior to importing
 	# this module
 	RequiredModules = @(
-		@{ ModuleName='PSFramework'; ModuleVersion='1.6.193' }
+		@{ ModuleName = 'PSFramework'; ModuleVersion = '1.6.198' }
+		@{ ModuleName = 'Mutex'; ModuleVersion = '1.1.6' }
+		@{ ModuleName = 'Roles'; ModuleVersion = '1.0.1' }
 	)
 	
 	# Assemblies that must be loaded prior to importing this module
@@ -39,16 +41,23 @@
 	# FormatsToProcess = @('xml\VMDeploy.Management.Format.ps1xml')
 	
 	# Functions to export from this module
-	FunctionsToExport = ''
+	FunctionsToExport = @(
+		'Get-VMManConfiguration'
+		'Get-VMManConfigurationProvider'
+		'Import-VMManConfiguration'
+		'Install-VMDeployment'
+		'Register-VMManConfigurationProvider'
+		'Set-VMManConfigurationSource'
+	)
 	
 	# Cmdlets to export from this module
-	CmdletsToExport = ''
+	# CmdletsToExport = ''
 	
 	# Variables to export from this module
-	VariablesToExport = ''
+	# VariablesToExport = ''
 	
 	# Aliases to export from this module
-	AliasesToExport = ''
+	# AliasesToExport = ''
 	
 	# List of all modules packaged with this module
 	ModuleList = @()

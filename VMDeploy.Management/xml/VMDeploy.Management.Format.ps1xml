@@ -1,31 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-16"?>
 <Configuration>
-	<ViewDefinitions>
-		<!-- Foo.Bar -->
-		<View>
-			<Name>Foo.Bar</Name>
-			<ViewSelectedBy>
-				<TypeName>Foo.Bar</TypeName>
-			</ViewSelectedBy>
-			<TableControl>
-				<AutoSize/>
-				<TableHeaders>
-					<TableColumnHeader/>
-					<TableColumnHeader/>
-				</TableHeaders>
-				<TableRowEntries>
-					<TableRowEntry>
-						<TableColumnItems>
-							<TableColumnItem>
-								<PropertyName>Foo</PropertyName>
-							</TableColumnItem>
-							<TableColumnItem>
-								<PropertyName>Bar</PropertyName>
-							</TableColumnItem>
-						</TableColumnItems>
-					</TableRowEntry>
-				</TableRowEntries>
-			</TableControl>
-		</View>
-	</ViewDefinitions>
+    <ViewDefinitions>
+        <!-- VMDeploy.Management.ConfigurationProvider -->
+        <View>
+            <Name>VMDeploy.Management.ConfigurationProvider</Name>
+            <ViewSelectedBy>
+                <TypeName>VMDeploy.Management.ConfigurationProvider</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <AutoSize/>
+                <TableHeaders>
+                    <TableColumnHeader/>
+                    <TableColumnHeader>
+                        <Label>Parameters</Label>
+                    </TableColumnHeader>
+                </TableHeaders>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>Name</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <ScriptBlock>
+ $_.Parameters -join ", " 
+                                </ScriptBlock>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                </TableRowEntries>
+            </TableControl>
+        </View>
+    </ViewDefinitions>
 </Configuration>

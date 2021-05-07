@@ -12,3 +12,5 @@ $moduleRoot = Split-Path (Split-Path $PSScriptRoot)
 
 # Load the strings used in messages
 "$moduleRoot\internal\scripts\strings.ps1"
+
+(Get-ChildItem "$moduleRoot\internal\classes\*.ps1" -ErrorAction Ignore).FullName

@@ -1,5 +1,5 @@
 ﻿$script:ModuleRoot = $PSScriptRoot
-$script:ModuleVersion = (Import-PowerShellDataFile -Path "$($script:ModuleRoot)\VMDeploy.Management.psd1").ModuleVersion
+$script:ModuleVersion = (Import-PSFPowerShellDataFile -Path "$($script:ModuleRoot)\VMDeploy.Management.psd1").ModuleVersion
 
 # Detect whether at some level dotsourcing was enforced
 $script:doDotSource = Get-PSFConfigValue -FullName VMDeploy.Management.Import.DoDotSource -Fallback $false

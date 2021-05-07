@@ -1,0 +1,32 @@
+﻿@{
+
+	# Version number of the schema used for this document
+	SchemaVersion = '2.0.0.0'
+
+	# ID used to uniquely identify this document
+	GUID = '69a9303b-2016-41af-9679-fd36d71cb252'
+
+	# Author of this document
+	Author = 'Friedrich Weinmann'
+
+	# Description of the functionality provided by these settings
+	Description = '[JEA_VMDeployment 1.0.0] JEA Endpoint for accessing the VMDeployment system.'
+
+	# Company associated with this document
+	CompanyName = ' '
+
+	# Session type defaults to apply for this session configuration. Can be 'RestrictedRemoteServer' (recommended), 'Empty', or 'Default'
+	SessionType = 'RestrictedRemoteServer'
+
+	# Directory to place session transcripts for this session configuration
+	# TranscriptDirectory = 'C:\Transcripts\'
+
+	GroupManagedServiceAccount = 'þnameþ'
+
+	# User roles (security groups), and the role capabilities that should be applied to them when applied to a session
+	RoleDefinitions = @{
+	    'þroleþ' = @{
+	        'RoleCapabilityFiles' = 'C:\Program Files\WindowsPowerShell\Modules\JEA_VMDeployment\1.0.0\RoleCapabilities\VMDeployment.psrc'
+		}
+	}
+}

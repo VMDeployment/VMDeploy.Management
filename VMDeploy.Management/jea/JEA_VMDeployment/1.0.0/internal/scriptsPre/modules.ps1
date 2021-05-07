@@ -1,0 +1,7 @@
+﻿Import-Module PSFramework -Scope Global
+Import-Module Roles -Scope Global
+Import-Module virtualmachinemanager -Scope Global
+Import-Module VMDeploy.Management -Scope Global
+Import-Module VMDeploy.Orchestrator -Scope Global
+
+$null = Get-VMMServer -ComputerName (Get-PSFConfigValue -FullName 'VMDeployment.SCVMM.Server' -NotNull)
