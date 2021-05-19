@@ -46,6 +46,7 @@
 		'Get-VMManConfigurationProvider'
 		'Import-VMManConfiguration'
 		'Install-VMDeployment'
+        'New-VMManConfiguration'
 		'Register-VMManConfigurationProvider'
 		'Set-VMManConfigurationSource'
 	)
