@@ -7,7 +7,7 @@
         Import configured guestOSProfiles and their associated roles.
     
     .PARAMETER ImportRoot
-        The root folder under which all configuraion to import is stored.
+        The root folder under which all configuration to import is stored.
     
     .EXAMPLE
         PS C:\> Import-ConfigGuestOSProfile -ImportRoot $importRoot

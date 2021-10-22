@@ -1,12 +1,15 @@
 ﻿enum ConfigType {
     Cloud
     DNSServer
-    Domain
+	Domain
+	GuestConfig
     GuestOSProfile
-    HardwareProfile
+	HardwareProfile
+	Modules
     Network
     Roles
     Template
     VirtualHardDisk
-    VMHostGroup
+	VMHost
+	VMHostGroup
 }

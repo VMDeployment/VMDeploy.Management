@@ -70,7 +70,20 @@
             if ($command.Name -eq 'Import-ConfigRole') { continue }
             & $command -ImportRoot $tempFolder
         }
-        Remove-Item -Path $tempFolder -Recurse -Force -ErrorAction Ignore
-        #endregion Validate & Import
+        
+		#endregion Validate & Import
+		
+		#region Transfer Resources
+		if (Test-Path -Path "$tempFolder\Resources") {
+			if (-not (Test-Path -Path "$contentPath\Resources")) {
+				$null = New-Item -Path "$contentPath\Resources" -ItemType Directory -Force
+			}
+			
+			Copy-Item -Path "$tempFolder\Resources\*" -Destination "$contentPath\Resources" -Recurse -Force
+		}
+		#endregion Transfer Resources
+		
+		# Cleanup temp folder once import has been completed
+		Remove-Item -Path $tempFolder -Recurse -Force -ErrorAction Ignore
     }
 }

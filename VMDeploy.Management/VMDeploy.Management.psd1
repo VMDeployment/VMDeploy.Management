@@ -26,9 +26,9 @@
 	# Modules that must be imported into the global environment prior to importing
 	# this module
 	RequiredModules = @(
-		@{ ModuleName = 'PSFramework'; ModuleVersion = '1.6.198' }
-		@{ ModuleName = 'Mutex'; ModuleVersion = '1.1.6' }
-		@{ ModuleName = 'Roles'; ModuleVersion = '1.0.1' }
+		@{ ModuleName = 'PSFramework'; ModuleVersion = '1.6.201' }
+		@{ ModuleName = 'Mutex'; ModuleVersion = '1.1.8' }
+		@{ ModuleName = 'Roles'; ModuleVersion = '1.0.3' }
 	)
 	
 	# Assemblies that must be loaded prior to importing this module
@@ -48,6 +48,7 @@
 		'Install-VMDeployment'
         'New-VMManConfiguration'
 		'Register-VMManConfigurationProvider'
+		'Register-VMManRepository'
 		'Set-VMManConfigurationSource'
 	)
 	

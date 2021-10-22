@@ -15,3 +15,4 @@ Set-PSFConfig -Module 'VMDeploy.Management' -Name 'Import.DoDotSource' -Value $f
 Set-PSFConfig -Module 'VMDeploy.Management' -Name 'Import.IndividualFiles' -Value $false -Initialize -Validation 'bool' -Description "Whether the module files should be imported individually. During the module build, all module code is compiled into few files, which are imported instead by default. Loading the compiled versions is faster, using the individual files is easier for debugging and testing out adjustments."
 
 Set-PSFConfig -Module 'VMDeploy.Management' -Name 'ContentPath' -Value (Join-Path -Path (Get-PSFPath -Name ProgramData) -ChildPath 'VMDeployment') -Initialize -Validation 'string' -Description "Path where operational data of the VMDeployment system are stored."
+Set-PSFConfig -Module 'VMDeploy.Management' -Name 'PSRepository' -Value 'PSGallery' -Initialize -Validation 'string' -Description 'The PowerShell repository from which to deploy modules into VMDeployment'

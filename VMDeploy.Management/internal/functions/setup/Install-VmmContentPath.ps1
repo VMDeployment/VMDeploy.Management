@@ -29,6 +29,9 @@
 		if (-not (Test-Path -Path $vmDeployContentPath)) {
 			$null = New-Item -Path $vmDeployContentPath -ItemType Directory -Force -ErrorAction Stop -WhatIf:$false -Confirm:$false
 		}
+		if (-not (Test-Path -Path "$vmDeployContentPath\modules")) {
+			$null = New-Item -Path "$vmDeployContentPath\modules" -ItemType Directory -Force -ErrorAction Stop -WhatIf:$false -Confirm:$false
+		}
 		
 		$rule = [System.Security.AccessControl.FileSystemAccessRule]::new($GmsaSID, 'FullControl', 'ContainerInherit, ObjectInherit', 'None', 'Allow')
 		$acl = Get-Acl -Path $vmDeployContentPath -ErrorAction Stop
