@@ -14,7 +14,6 @@
     <Folder>VMDeploy.Management\internal\functions\setup</Folder>
     <Folder>VMDeploy.Management\functions\Configuration</Folder>
     <Folder>VMDeploy.Management\internal\configurationProviders</Folder>
-    <Folder>VMDeploy.Management\jea</Folder>
     <Folder>VMDeploy.Management\jea\JEA_VMDeployment</Folder>
     <Folder>VMDeploy.Management\jea\JEA_VMDeployment\1.0.0</Folder>
     <Folder>VMDeploy.Management\jea\JEA_VMDeployment\1.0.0\functions</Folder>
@@ -27,14 +26,17 @@
     <Folder>VMDeploy.Management\internal\functions\test</Folder>
     <Folder>VMDeploy.Management\internal\functions\import</Folder>
     <Folder>VMDeploy.Management\internal\functions\read</Folder>
+    <Folder>VMDeploy.Management\internal\classes</Folder>
+    <Folder>VMDeploy.Management\internal\data</Folder>
+    <Folder>VMDeploy.Management\internal\data\Configuration</Folder>
+    <Folder>VMDeploy.Management\internal\data\Configuration\Network</Folder>
   </OpenFolders>
   <OpenFiles>
-    <File>VMDeploy.Management\internal\functions\setup\Install-VmmJeaEndpoint.ps1</File>
     <File>VMDeploy.Management\en-us\strings.psd1</File>
-    <File>VMDeploy.Management\jea\JEA_VMDeployment\1.0.0\RoleCapabilities\VMDeployment.psrc</File>
-    <File>VMDeploy.Management\functions\System\Install-VMDeployment.ps1</File>
-    <File>VMDeploy.Management\internal\functions\setup\Install-VmmRoles.ps1</File>
-    <File>VMDeploy.Management\internal\functions\setup\Install-VmmContentPath.ps1</File>
-    <File>lab.ps1</File>
+    <File>VMDeploy.Management\internal\data\Configuration\Network\readme.md</File>
+    <File>VMDeploy.Management\internal\functions\import\Import-ConfigModule.ps1</File>
+    <File>VMDeploy.Management\functions\Configuration\Import-VMManConfiguration.ps1</File>
+    <File>VMDeploy.Management\internal\functions\setup\Assert-Role.ps1</File>
+    <File>VMDeploy.Management\internal\scripts\initialize.ps1</File>
   </OpenFiles>
 </ProjectState>

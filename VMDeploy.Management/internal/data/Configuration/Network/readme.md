@@ -10,7 +10,7 @@ Example psd1 definition:
     Name = "Contoso Network"
     Description = "Contoso internal AD network zone"
     Role = 'Network_Contoso'
-    SubnetMask = '10.1.0.0/16'
+    PrefixLength = 16
     DefaultGateway = '10.1.0.1'
     DnsServer = @(
         '10.0.1.1'
