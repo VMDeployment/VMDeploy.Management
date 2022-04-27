@@ -22,7 +22,7 @@ function Install-ScvmmContent {
 
         $allHosts = foreach ($vmHost in Get-SCVMHost) {
             # Configure VMHost VM-Path
-            Set-SCVMHost -VMHost $vmHost -VMPaths "E:\" -BaseDiskPaths ""
+            $null = Set-SCVMHost -VMHost $vmHost -VMPaths "E:\" -BaseDiskPaths ""
             $vmHost
         }
         # Step 1: Create logical network & network definition
