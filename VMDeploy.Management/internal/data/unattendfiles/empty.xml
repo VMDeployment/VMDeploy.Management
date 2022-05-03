@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <servicing></servicing>
+    <settings pass="specialize">
+        
+    </settings>
+    <settings pass="oobeSystem">
+        
+    </settings>
+</unattend>

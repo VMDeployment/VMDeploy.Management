@@ -11,6 +11,10 @@
 		- Configure roles for core access
 		- Prepare the path used by the JEA endpoint to store all operational data
 		- Install the JEA endpoint configuration.
+		- Configure SCVMM access
+		- Install required server features
+
+		After the installation completed, a reboot might be required.
 	
 	.PARAMETER AdminPrincipal
 		The core admin principal.
@@ -93,6 +97,10 @@
 		
 		Invoke-PSFProtectedCommand -ActionString 'Install-VMDeployment.LibraryShare' -Target $env:COMPUTERNAME -ScriptBlock {
 			Set-PSFConfig -FullName 'VMDeploy.Orchestrator.Scvmm.LibraryPath' -Value $LibraryShare -PassThru -EnableException | Register-PSFConfig -Scope SystemDefault -ErrorAction Stop -EnableException
+		} -EnableException $true -PSCmdlet $PSCmdlet
+		
+		Invoke-PSFProtectedCommand -ActionString 'Install-VMDeployment.Feature' -Target $env:COMPUTERNAME -ScriptBlock {
+			Install-VmmServerFeature -ErrorAction Stop
 		} -EnableException $true -PSCmdlet $PSCmdlet
 		
 		if ($Repository) {

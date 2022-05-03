@@ -45,11 +45,18 @@
 		'Get-VMManConfiguration'
 		'Get-VMManConfigurationProvider'
 		'Import-VMManConfiguration'
-		'Install-VMDeployment'
         'New-VMManConfiguration'
 		'Register-VMManConfigurationProvider'
 		'Register-VMManRepository'
 		'Set-VMManConfigurationSource'
+		
+		'Get-VMManGuardedFabric'
+		'Get-VMManShieldingOwner'
+		'Register-VMManGuardedFabric'
+		'Set-VMManShieldingOwner'
+		'Unregister-VMManGuardedFabric'
+		
+		'Install-VMDeployment'
 	)
 	
 	# Cmdlets to export from this module

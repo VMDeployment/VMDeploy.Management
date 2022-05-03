@@ -1,0 +1,18 @@
+﻿# Shielding Unattend Files
+
+For shielded VM deployments it is required to include an unattend xml file.
+Drop any desired unattend xml files for inclusion in this folder.
+
+By default, an "empty" unattend file exists, that any admin can use.
+Any unattend XML files included will be made available to admins by default, it is however also possible to include custom role assignments (including for the default "empty" unattend file) using psd1 files with the following layout:
+
+```powershell
+@{
+    # (mandatory) Name by which the unattend file is selected
+    Name = "<Name>"
+    # (optional) Name of the file backing this configuration. If not specified, '<name>.xml' is assumed
+    FileName = "<filename>.xml"
+    # The name of the role allowed to use this unattend file
+    Role = "<role>"
+}
+```

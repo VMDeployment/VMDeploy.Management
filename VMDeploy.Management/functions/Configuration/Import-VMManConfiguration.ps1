@@ -14,6 +14,7 @@
 	
 		Imports the VMDeployment configuration from the defined source.
 #>
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')]
     [CmdletBinding()]
     param (
 		

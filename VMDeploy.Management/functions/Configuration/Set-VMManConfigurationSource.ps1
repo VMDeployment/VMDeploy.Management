@@ -11,13 +11,19 @@
 	
 	.PARAMETER Parameters
 		The parameters to provide to the configuration provider.
+
+	.PARAMETER WhatIf
+		If this switch is enabled, no actions are performed but informational messages will be displayed that explain what would happen if the command were to run.
+
+	.PARAMETER Confirm
+		If this switch is enabled, you will be prompted for confirmation before executing any operations that change state.
 	
 	.EXAMPLE
 		PS C:\> Set-VMManConfigurationSource -ProviderName 'file' -Parameters @{ Path = '\\server\share\configuration' }
 	
 		Configures the system to retrieve its configuration using the file provider from the path '\\server\share\configuration'
 #>
-	[CmdletBinding()]
+	[CmdletBinding(SupportsShouldProcess = $true)]
 	param (
 		[Parameter(Mandatory = $true)]
 		[PsfArgumentCompleter('VMDeploy.Management.ConfigurationProvider')]

@@ -8,6 +8,7 @@
 	Modules
     Network
     Roles
+	ShieldingUnattend
     Template
     VirtualHardDisk
 	VMHost
