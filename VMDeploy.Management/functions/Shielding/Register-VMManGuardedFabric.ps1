@@ -79,6 +79,7 @@
 	begin {
 		Assert-Role -Role Admins -RemoteOnly -Cmdlet $PSCmdlet
 
+		Import-Module CimCmdlets -Scope Global
 		Import-Module HgsClient -Scope Global
 	}
 
@@ -90,7 +91,7 @@
 
 		$guardianXml = $Xml
 		if ($Path) {
-			Invoke-PSFProtectedCommand -ActionString 'Register-VMManGuardedFabric.Reading.File' -Target $Path -ScriptBlock {
+			Invoke-PSFProtectedCommand -ActionString 'Register-VMManGuardedFabric.Reading.File' -ActionStringValues $Path -Target $Path -ScriptBlock {
 				$guardianXml = (Get-Content -LiteralPath (Resolve-PSFPath -Path $Path) -ErrorAction Stop) -join "`n"
 			} -EnableException $true -PSCmdlet $PSCmdlet
 		}
@@ -105,8 +106,10 @@
 					if ($UseSSL) { $link = "https://$HostName/KeyProtection/service/metadata/2014-07/metadata.xml" }
 				}
 			}
-			Invoke-PSFProtectedCommand -ActionString 'Register-VMManGuardedFabric.Reading.Uri' -Target $link -ScriptBlock {
-				$guardianXml = [string](Invoke-WebRequest -Uri $link -ErrorAction Stop)
+			$webClient = [System.Net.WebClient]::new()
+			$webClient.Encoding = [System.Text.Encoding]::UTF8
+			Invoke-PSFProtectedCommand -ActionString 'Register-VMManGuardedFabric.Reading.Uri' -ActionStringValues $link -Target $link -ScriptBlock {
+				$guardianXml = $webClient.DownloadString($link)
 			} -EnableException $true -PSCmdlet $PSCmdlet
 		}
 		$tempFilePath = Join-Path -Path (Get-PSFPath -Name temp) -ChildPath "guardian-$(Get-Random).xml"

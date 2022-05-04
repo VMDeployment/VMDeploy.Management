@@ -31,6 +31,7 @@
 	begin {
 		Assert-Role -Role Admins -RemoteOnly -Cmdlet $PSCmdlet
 
+		Import-Module CimCmdlets -Scope Global
 		Import-Module HgsClient -Scope Global
 	}
 

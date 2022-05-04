@@ -28,6 +28,7 @@
     process {
         foreach ($typeName in $Type) {
             $configFile = Join-Path -Path $contentPath -ChildPath "$typeName.clidat"
+			if (-not (Test-Path -Path $configFile)) { continue }
             Import-PSFClixml -Path $configFile -ErrorAction SilentlyContinue
         }
     }

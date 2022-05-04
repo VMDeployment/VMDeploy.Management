@@ -22,6 +22,7 @@ Example file content:
     Role = 'Template_Contoso'
     ChildTemplates = @()
     GuestConfig = @()
+    # Shielding = 'empty'
 }
 ```
 
@@ -89,3 +90,10 @@ These will be processed in the order they are defined:
 
 List of guest configurations to include.
 These will be deployed to the guest, including all required resources.
+
+> Shielding
+
+Any shielding configuration will cause the deployment of the VM as a Shielded VM (or fail if the necessary configuration and infrastructure are missing).
+To manage shielding, provide an unattend file under the `ShieldingUnattend` folder and reference it here by name.
+The unattend file `empty` (which defines no settings at all) is available by default to admins.
+To enable other roles, either provide a custom unattend file with a role configuration or override the default configuration for the `empty` unattend file.

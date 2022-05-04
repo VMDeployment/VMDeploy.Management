@@ -18,6 +18,7 @@
 
 	process {
 		$features = @(
+			'Hyper-V-PowerShell'
 			'RSAT-Shielded-VM-Tools'
 		)
 	
