@@ -22,6 +22,8 @@ Example file content:
     Role = 'Template_Contoso'
     ChildTemplates = @()
     GuestConfig = @()
+    # DynamicHardwareProfile = $true
+    # DynamicGuestOSProfile = $true
     # Shielding = 'empty'
 }
 ```
@@ -89,7 +91,23 @@ These will be processed in the order they are defined:
 > GuestConfig
 
 List of guest configurations to include.
-These will be deployed to the guest, including all required resources.
+These will be deployed to the guest and applied from within, including all required resources.
+
+> DynamicHardwareProfile
+
+Whether the hardware profile should be determined dynamically.
+This is a tri-state boolean similar to GPO settings: True, False or undefined.
+The last template that defines this setting wins.
+If at final resolution a value of true is detected, the configured dynamic hardware profiles will be evaluated and tested, and the highest priority applicable dynamic hardware profile will be applied and overwrite static hardware profiles be overwritten.
+If no dynamic hardware profile is applicable, the resolved static hardware profile is applied.
+
+> DynamicGuestOSProfile
+
+Whether the GuestOSProfile should be determined dynamically.
+This is a tri-state boolean similar to GPO settings: True, False or undefined.
+The last template that defines this setting wins.
+If at final resolution a value of true is detected, the configured dynamic GuestOSProfiles will be evaluated and tested, and the highest priority applicable dynamic GuestOSProfile will be applied and overwrite static GuestOSProfiles be overwritten.
+If no dynamic GuestOSProfile is applicable, the resolved static GuestOSProfile is applied.
 
 > Shielding
 

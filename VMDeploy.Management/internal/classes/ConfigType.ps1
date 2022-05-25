@@ -2,6 +2,8 @@
     Cloud
     DNSServer
 	Domain
+	DynamicGuestOSProfile
+	DynamicHardwareProfile
 	GuestConfig
     GuestOSProfile
 	HardwareProfile

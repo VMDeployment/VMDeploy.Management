@@ -29,6 +29,9 @@
 		
 		$actionSourcePath = Join-Path -Path $ImportRoot -ChildPath Actions
 		$actionDestinationPath = Join-Path -Path $contentPath -ChildPath Actions
+		if (-not (Test-Path -Path $actionDestinationPath)) {
+			$Null = New-Item -Path $actionDestinationPath -ItemType Directory -Force -ErrorAction Stop
+		}
 		
 		$sourceActions = Get-ChildItem -Path $actionSourcePath -Recurse -Filter *.ps1
 		foreach ($actionFile in $sourceActions) {
