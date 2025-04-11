@@ -64,12 +64,6 @@
 			Write-PSFMessage -Level Warning -String 'Install-VmmJeaEndpoint.Error.InsertGmsaName' -StringValues $gmsaNT -ErrorRecord $_
 			throw
 		}
-
-        try { Set-PSFConfig -FullName 'VMDeployment.SCVMM.Server' -Value $VmmServer -PassThru -EnableException | Register-PSFConfig -Scope SystemDefault -EnableException }
-        catch {
-            Write-PSFMessage -Level Warning -String 'Install-VmmJeaEndpoint.Error.RegisterScvmm' -ErrorRecord $_
-			throw
-        }
 		
 		try { $null = Register-JeaEndpoint_JEA_VMDeployment -ErrorAction Stop }
 		catch {

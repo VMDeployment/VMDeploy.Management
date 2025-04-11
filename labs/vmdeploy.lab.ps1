@@ -1,7 +1,18 @@
-﻿Import-Module C:\Code\Github\LabHelper\LabHelper\LabHelper.psd1 -Force
+﻿[CmdletBinding()]
+param (
+	[switch]
+	$MultiForest,
+
+	[switch]
+	$SecondVmm
+)
+
+if ($MultiForest) {
+	Import-Module C:\Code\Github\LabHelper\LabHelper\LabHelper.psd1 -Force -ErrorAction Stop
+}
 
 $labname = 'vmdeploy'
-$imageUI = 'Windows Server 2019 Datacenter (Desktop Experience)'
+$imageUI = 'Windows Server 2022 Datacenter (Desktop Experience)'
 
 
 #region Utility Functions
@@ -80,28 +91,51 @@ $PSDefaultParameterValues['Add-LabMachineDefinition:DomainName'] = 'contoso.com'
 
 Add-LabMachineDefinition -Name VmdF1DC -Roles RootDC
 Add-LabMachineDefinition -Name VmdF1AdminHost
-Add-LabMachineDefinition -Name VmdF1SCVMM -Roles Scvmm2019 @{
+$role = Get-LabMachineRoleDefinition -Role Scvmm2022 -Properties @{
     ConnectHyperVRoleVms = 'VmdF1HV'
+	SqlMachineName = 'VmdF1SQL1'
 }
-Add-LabMachineDefinition -Name VmdF1HGS 
+Add-LabMachineDefinition -Name VmdF1SCVMM -Roles $role
+Add-LabMachineDefinition -Name VmdF1HGS
 Add-LabMachineDefinition -Name VmdF1VMDeploy
-Add-LabMachineDefinition -Name VmdF1SQL -Roles SQLServer2017
+Add-LabMachineDefinition -Name VmdF1SQL1 -Roles SQLServer2022
 Add-LabMachineDefinition -Name VmdF1HV -Roles HyperV -Memory 8GB
 
-$PSDefaultParameterValues['Add-LabMachineDefinition:DomainName'] = 'fabrikam.org'
-Add-LabMachineDefinition -Name VmdF2DC -Roles RootDC
-Add-LabMachineDefinition -Name VmdF2AdminHost
-Add-LabMachineDefinition -Name VmdF2HV -Roles HyperV
+if ($SecondVmm) {
+	$role = Get-LabMachineRoleDefinition -Role Scvmm2022 -Properties @{
+		ConnectHyperVRoleVms = 'VmdF1HV2'
+		SqlMachineName = 'VmdF1SQL2'
+	}
+	Add-LabMachineDefinition -Name VmdF1SCVMM2 -Roles $role
+	Add-LabMachineDefinition -Name VmdF1HGS2
+	Add-LabMachineDefinition -Name VmdF1SQL2 -Roles SQLServer2022
+	Add-LabMachineDefinition -Name VmdF1HV2 -Roles HyperV -Memory 8GB
+}
+
+if ($MultiForest) {
+	$PSDefaultParameterValues['Add-LabMachineDefinition:DomainName'] = 'fabrikam.org'
+	Add-LabMachineDefinition -Name VmdF2DC -Roles RootDC
+	Add-LabMachineDefinition -Name VmdF2AdminHost
+	Add-LabMachineDefinition -Name VmdF2HV -Roles HyperV
+}
 
 Install-Lab
 
-New-LabADTrust -ComputerName VmdF1DC -RemoteForest fabrikam.org -Direction Inbound
+if ($MultiForest) {
+	New-LabADTrust -ComputerName VmdF1DC -RemoteForest fabrikam.org -Direction Inbound
+}
 
-Install-LabWindowsFeature -ComputerName VmdF1AdminHost, VmdF2AdminHost -FeatureName NET-Framework-Core, NET-Non-HTTP-Activ, GPMC, RSAT-AD-Tools
-Install-LabWindowsFeature -ComputerName VmdF1HGS -FeatureName Install-LabWindowsFeature -IncludeManagementTools
+Install-LabWindowsFeature -ComputerName VmdF1AdminHost -FeatureName NET-Framework-Core, NET-Non-HTTP-Activ, GPMC, RSAT-AD-Tools
+if ($MultiForest) {
+	Install-LabWindowsFeature -ComputerName VmdF2AdminHost -FeatureName NET-Framework-Core, NET-Non-HTTP-Activ, GPMC, RSAT-AD-Tools
+}
+Install-LabWindowsFeature -ComputerName VmdF1HGS -FeatureName HostGuardianServiceRole -IncludeManagementTools
 Restart-LabVM -ComputerName VmdF1HGS -Wait
 
 Install-ScvmmContent -ScvmmName VmdF1SCVMM
+if ($SecondVmm) {
+	Install-ScvmmContent -ScvmmName VmdF1SCVMM2
+}
 
 Invoke-LabCommand -ActivityName "Setting Keyboard Layout" -ComputerName (Get-LabVM).Name -ScriptBlock {
     Set-WinUserLanguageList -LanguageList 'de-de' -Confirm:$false -Force

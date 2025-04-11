@@ -79,6 +79,10 @@
 		if (-not $gmsaSID) { Stop-PSFFunction -String 'Install-VMDeployment.JeaGmsa.NotFound' -StringValues $JeaGMSA -EnableException $true -Cmdlet $PSCmdlet -Category ObjectNotFound }
 	}
 	process {
+		Invoke-PSFProtectedCommand -ActionString 'Install-VMDeployment.SCVMM' -Target $env:COMPUTERNAME -ScriptBlock {
+			Register-VMManScvmm -Name Default -VmmServer $VmmServer -LibraryShare $LibraryShare -Description 'SCVMM from original Setup' -Role Admins
+		} -EnableException $true -PSCmdlet $PSCmdlet
+
 		Invoke-PSFProtectedCommand -ActionString 'Install-VMDeployment.Roles' -Target $env:COMPUTERNAME -ScriptBlock {
 			Install-VmmRoles -AdminPrincipal $AdminPrincipal -GmsaSID $gmsaSID -ErrorAction Stop
 		} -EnableException $true -PSCmdlet $PSCmdlet
@@ -93,10 +97,6 @@
 		
 		Invoke-PSFProtectedCommand -ActionString 'Install-VMDeployment.RolesConfig' -Target $env:COMPUTERNAME -ScriptBlock {
 			Set-PSFConfig -FullName Roles.Validation.SkipElevationTest -Value $true -PassThru -EnableException | Register-PSFConfig -Scope SystemDefault -ErrorAction Stop -EnableException
-		} -EnableException $true -PSCmdlet $PSCmdlet
-		
-		Invoke-PSFProtectedCommand -ActionString 'Install-VMDeployment.LibraryShare' -Target $env:COMPUTERNAME -ScriptBlock {
-			Set-PSFConfig -FullName 'VMDeploy.Orchestrator.Scvmm.LibraryPath' -Value $LibraryShare -PassThru -EnableException | Register-PSFConfig -Scope SystemDefault -ErrorAction Stop -EnableException
 		} -EnableException $true -PSCmdlet $PSCmdlet
 		
 		Invoke-PSFProtectedCommand -ActionString 'Install-VMDeployment.Feature' -Target $env:COMPUTERNAME -ScriptBlock {

@@ -19,6 +19,7 @@ Example file content:
     Cloud = 'TestCloud'
     VirtualHardDisk = 'Server2019.vhdx'
     Network = 'Contoso_Network'
+    # VMMServer = 'default'
     Role = 'Template_Contoso'
     ChildTemplates = @()
     GuestConfig = @()
@@ -27,6 +28,9 @@ Example file content:
     # Shielding = 'empty'
 }
 ```
+
+Each entry (other than name and description) is optional.
+Settings from multiple templates (and child templates) are merged before further processing.
 
 ## Settings
 
@@ -79,6 +83,12 @@ Will be assigned LUN 0.
 The network profile to assign.
 This defines subnet, DNS Servers, etc.
 Each setting can be overridden from within New-VmoVirtualMachine.
+
+> VMMServer
+
+The SCVMM Server to deploy the virtual machine to.
+Defaults to "Default".
+For scenarios where one VMDeploy system is used to deploy to multiple SCVMM environments.
 
 > ChildTemplates
 

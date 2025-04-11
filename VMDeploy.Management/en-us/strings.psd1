@@ -19,7 +19,7 @@
 	'Install-VMDeployment.Feature'                            = 'Installing the required windows features' # 
 	'Install-VMDeployment.JeaEndpoint'                        = 'Setting up the JEA Endpoint used to operate VMDeployment from' # 
 	'Install-VMDeployment.JeaGmsa.NotFound'                   = 'Unable to resolve the group Managed Service Account under which the JEA endpoint operating VMDeployment is intended to run.' # $JeaGMSA
-	'Install-VMDeployment.LibraryShare'                       = 'Registering the System Center: Virtual Machine Manager library share to use for the process.' # 
+	'Install-VMDeployment.SCVMM'                              = 'Registering the System Center: Virtual Machine Manager to use for the process.' # 
 	'Install-VMDeployment.RepositoryConfig'                   = 'Configuring the repository to use for downloading PowerShell modules.' # 
 	'Install-VMDeployment.Roles'                              = 'Setting up initial roles for VMDeployment.' # 
 	'Install-VMDeployment.RolesConfig'                        = 'Configuring the Roles module to ignore the elevation validation' # 
@@ -28,7 +28,6 @@
 	'Install-VmmJeaEndpoint.Error.GmsaSidTranslation'         = 'Failed to translate SID of gMSA {0}' # $GmsaSID
 	'Install-VmmJeaEndpoint.Error.InsertGmsaName'             = 'Failed to modify the session configuration file, adding the gMSA {0}' # $gmsaNT
 	'Install-VmmJeaEndpoint.Error.RegisterJeaEndpoint'        = 'Failed to register the JEA endpoint as a PowerShell Session Configuration' # 
-	'Install-VmmJeaEndpoint.Error.RegisterScvmm'              = 'Failed to register SCVMM Server name "{0}" in configuration' # 
 	
 	'Install-VmmServerFeature.Installing'                     = 'Installing Windows Feature: {0}' # $feature
 	'Install-VmmServerFeature.Installing.Failed'              = 'Failed to install the Windows Feature: {0}' # $feature

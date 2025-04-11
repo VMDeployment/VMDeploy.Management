@@ -47,6 +47,13 @@ Copyright = '(c) Friedrich Weinmann. All rights reserved.'
 	RequiredModules   = @(
 		'PSFramework'
 		'Mutex'
+		'Roles'
+		'virtualmachinemanager'
+		'Storage'
+		'VHDX'
+		'VMDeploy.Management'
+		'VMDeploy.Orchestrator'
+		'VMDeploy.Guest'
 	)
 
 # Assemblies that must be loaded prior to importing this module

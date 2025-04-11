@@ -3,7 +3,7 @@
 	RootModule = 'VMDeploy.Management.psm1'
 	
 	# Version number of this module.
-	ModuleVersion = '1.0.0'
+	ModuleVersion = '1.1.0'
 	
 	# ID used to uniquely identify this module
 	GUID = '0e3f6435-3c63-4b67-83f5-3825c37f0ebc'
@@ -55,6 +55,10 @@
 		'Register-VMManGuardedFabric'
 		'Set-VMManShieldingOwner'
 		'Unregister-VMManGuardedFabric'
+
+		'Get-VMManScvmm'
+		'Register-VMManScvmm'
+		'Unregister-VMManScvmm'
 		
 		'Install-VMDeployment'
 	)
